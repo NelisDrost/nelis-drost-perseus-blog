@@ -4,7 +4,7 @@ use crate::components::layout::Layout;
 
 fn index_page<G: Html>(cx: Scope) -> View<G> {
     view! { cx,
-        Layout(title="Index") {
+        Layout(title="Welcome") {
             div(style="welcome-div-style") {
                 h2 { "Welcome!" }
                 p { "Welcome to this website, my very much work-in-progress corner of the internet." }
