@@ -1,0 +1,136 @@
+:root {
+    --page-width: 800px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+}
+.layout-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.container {
+    margin: 0 auto;
+    max-width: calc(var(--page-width) + 2em);
+    font-family: Helvetica, sans-serif;
+    padding: 0 1em;
+}
+.container h1, .container h2, .container h3, .container h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 0.8;
+    font-weight: 800;
+}
+.container h1 {
+    font-size: 2em;
+}
+.container h2 {
+    font-size: 1.5em;
+}
+.container h3 {
+    font-size: 1.4em;
+    margin-bottom: 0.3em;
+    padding-left: 0.5em;
+}
+.container p {
+    margin-top: 0.5em;
+    padding-left: 0.5em;
+    line-height: 1.6;
+    max-width: 80ex;
+    color: #333;
+    font-weight: 400;
+}
+.container br {
+    height: 3em;
+}
+.header-div {
+    margin: 0;
+    position: sticky;
+    padding: 0;
+    top: 0;
+    background: #86a78f;
+    z-index: 999;
+}
+.site-logo {
+    width: 1.5em;
+    height: 1.5em;
+}
+.nav-div {
+    background-color: #699174;
+}
+.nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 0.1em 0;
+    background: #699174;
+    margin: 0 auto;
+    max-width: var(--page-width);
+}
+.nav-link-item {
+    /* padding-right: 2rem;
+     */
+}
+.nav-link-text {
+    color: #000;
+    font-family: monospace;
+    text-decoration: none;
+}
+.nav-link-text:active, .nav-link-text:hover, .nav-link-text:focus {
+    color: #fa7921ff;
+}
+.site-title {
+    font-size: 1.7rem;
+    font-family: monospace;
+    color: #000;
+    text-align: center;
+    font-weight: 700;
+    margin: 0 auto 0 auto;
+    padding: 2px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+.footer {
+    margin-top: 1em;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    /*max-height: 200px;*/
+    height: 80px;
+    position:relative;
+    background: #86a78f;
+}
+.footer-div {
+    display: flex;
+    position: absolute;
+    bottom: 1em;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 1em 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: var(--page-width);
+}
+.footer-div p, a {
+    margin: 0 0;
+    color: #000;
+    font-family: monospace;
+}
+.footer-div a {
+    font-weight: 800;
+    font-family: monospace;
+    font-style: italic;
+    text-decoration: underline dashed;
+}
+.gatsby-icon {
+    position: relative;
+    top: 2px;
+    height: 1em;
+    margin: 0;
+    padding: 0;
+}
