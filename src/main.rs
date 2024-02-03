@@ -10,6 +10,7 @@ pub fn main<G: Html>() -> PerseusApp<G> {
     PerseusApp::new()
         .template(crate::templates::index::get_template())
         .template(crate::templates::about::get_template())
+        .template(crate::templates::blog::get_template())
         .error_views(crate::error_views::get_error_views())
         .static_alias("/favicon.ico", "src/assets/favicon.ico")
         .index_view(|cx| {
