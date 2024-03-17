@@ -134,3 +134,21 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+/* Blog index */
+.blog-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1em;
+    margin: 1em 0;
+}
+
+.blog-list-item {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #d3d3d3;
+    width: 200px;
+    height: 200px;
+}

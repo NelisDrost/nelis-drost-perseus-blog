@@ -46,8 +46,10 @@ fn blog_index<G: Html>(cx: Scope, BlogIndexStateRx {links}: &BlogIndexStateRx) -
     let posts = View::new_fragment(
         posts.iter().map(|link| {
             view! { cx,
-                a(href=format!("/blog/{}", link.slug)) { (link.title) }
-                br {}
+                a(href=format!("/blog/{}", link.slug)) {
+                    div(class="blog-list-item") {
+                        h3(class="blog-list-item-title") { (link.title) }
+                    }}
             }
         }).collect()
     );
@@ -56,8 +58,8 @@ fn blog_index<G: Html>(cx: Scope, BlogIndexStateRx {links}: &BlogIndexStateRx) -
         Layout(title="Blog") {
             div {
                 p { "This is a WIP, and a place for experiments - it's probably not going to be a traditional blog, so expect some slightly mismatched content." }
+                h2 { "Blog Posts" }
                 div(class="blog-list-container") {
-                    h2 { "Blog Posts" }
                     (posts)
                 }
             }
