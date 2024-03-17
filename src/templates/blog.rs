@@ -1,3 +1,4 @@
+use std::fs::DirEntry;
 use perseus::prelude::*;
 use perseus::state::rx_collections::RxVec;
 use serde::{Deserialize, Serialize};
@@ -11,6 +12,17 @@ struct BlogPost {
     slug: String
 }
 
+impl BlogPost {
+    pub fn build(file: DirEntry) -> Option<Self> {
+        let path = file.path();
+        let slug = path
+            .file_stem()?
+            .to_str()?
+            .to_string();
+        let title = slug.replace("-", " ");
+        return Some(Self {title, slug})
+    }
+}
 #[derive(Serialize, Deserialize, Clone, ReactiveState)]
 #[rx(alias="BlogIndexStateRx")]
 #[rx(hsr_ignore)]
@@ -18,26 +30,21 @@ struct BlogIndexState {
     links: RxVec<BlogPost>
 }
 
-
 #[cfg(engine)]
 impl BlogIndexState {
-    pub fn from_dir() -> Self {
-        let mut links = Vec::new();
-        // Load all files in ./posts directory
-        for file in std::fs::read_dir("posts").unwrap() {
-            let file = file.unwrap();
-            let path = file.path();
-            let slug = path.file_stem().unwrap().to_str().unwrap().to_string();
-            let title = slug.replace("-", " ");
-            links.push(BlogPost { title, slug });
-        }
-        BlogIndexState { links: links.into() }
+    pub fn from_dir(path: &str) -> Result<BlogIndexState, Box<dyn std::error::Error>> {
+        let links: Vec<BlogPost> = std::fs::read_dir(path)?
+            .into_iter()
+            .map(|x| BlogPost::build(x.ok()?))
+            .filter_map(|x| x)
+            .collect();
+        Ok(BlogIndexState { links: links.into() })
     }
 }
 
 #[engine_only_fn]
 async fn get_build_state(_info: StateGeneratorInfo<()>) -> BlogIndexState {
-    BlogIndexState::from_dir()
+    BlogIndexState::from_dir("posts").expect("Failed to build blog post list")
 }
 
 #[auto_scope]
